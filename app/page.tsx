@@ -72,7 +72,7 @@ export default async function Home() {
         <div className="flex flex-1 flex-col gap-6">
           <div className="hero-frame reveal reveal-delay-1">
             <Image
-              src="/rauz.png"
+              src="/rauz.jpg"
               alt={home.imageAlt}
               width={520}
               height={640}

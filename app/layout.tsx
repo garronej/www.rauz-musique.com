@@ -53,7 +53,7 @@ export async function generateMetadata(): Promise<Metadata> {
       alternateLocale: [locale === "fr" ? "en_US" : "fr_FR"],
       images: [
         {
-          url: "/rauz.png",
+          url: "/rauz.jpg",
           alt: home.imageAlt,
         },
       ],
@@ -63,7 +63,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: metadata.title,
       description: metadata.description,
-      images: ["/rauz.png"],
+      images: ["/rauz.jpg"],
     },
   };
 }
