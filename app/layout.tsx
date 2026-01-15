@@ -29,10 +29,37 @@ const themeScript = `
 })();
 `;
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const metadataBase = siteUrl.startsWith("http")
+  ? siteUrl
+  : `https://${siteUrl}`;
+
 export const metadata: Metadata = {
+  metadataBase: new URL(metadataBase),
   title: "Rauz | Composer, Bassist, Synth Bass, Guitarist",
   description:
     "Rauz is a composer of cover music for feature films. Explore featured media, socials, and connect.",
+  openGraph: {
+    title: "Rauz | Composer, Bassist, Synth Bass, Guitarist",
+    description:
+      "Rauz is a composer of cover music for feature films. Explore featured media, socials, and connect.",
+    url: "/",
+    siteName: "Rauz",
+    images: [
+      {
+        url: "/rauz.png",
+        alt: "Rauz portrait",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rauz | Composer, Bassist, Synth Bass, Guitarist",
+    description:
+      "Rauz is a composer of cover music for feature films. Explore featured media, socials, and connect.",
+    images: ["/rauz.png"],
+  },
 };
 
 export default function RootLayout({
