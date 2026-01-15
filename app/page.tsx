@@ -1,65 +1,199 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main>
+      <section className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 pb-16 pt-8 lg:flex-row lg:items-center lg:gap-16">
+        <div className="flex flex-1 flex-col gap-6">
+          <div className="reveal">
+            <span className="chip">
+              Composer, bassist, synth bass, guitarist
+            </span>
+          </div>
+          <h1 className="reveal reveal-delay-1 font-display text-5xl leading-tight text-[color:var(--foreground)] md:text-6xl lg:text-7xl">
+            Rauz
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="reveal reveal-delay-2 text-lg leading-8 text-[color:var(--muted)] md:text-xl">
+            Composer of cover music for feature films, weaving cinematic
+            arrangements with deep bass textures and modern synth bass.
           </p>
+          <div className="reveal reveal-delay-3 flex flex-wrap items-center gap-4">
+            <a className="btn" href="#media">
+              Play featured score
+            </a>
+            <Link className="btn-outline" href="/contact">
+              Contact
+            </Link>
+          </div>
+          <div className="reveal reveal-delay-3 grid gap-4 pt-4 sm:grid-cols-2">
+            <div className="glass-card p-5">
+              <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">
+                Focus
+              </p>
+              <p className="mt-3 text-lg font-semibold text-[color:var(--foreground)]">
+                Cinematic cover scoring
+              </p>
+              <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">
+                Reimagined themes for feature-length storytelling.
+              </p>
+            </div>
+            <div className="glass-card p-5">
+              <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">
+                Instruments
+              </p>
+              <p className="mt-3 text-lg font-semibold text-[color:var(--foreground)]">
+                Bass-forward palettes
+              </p>
+              <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">
+                Electric bass, synth bass, and guitar textures.
+              </p>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+        <div className="flex flex-1 flex-col gap-6">
+          <div className="hero-frame reveal reveal-delay-1">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              src="/rauz.png"
+              alt="Rauz portrait"
+              width={520}
+              height={640}
+              className="h-full w-full object-cover"
+              priority
+              sizes="(min-width: 1024px) 520px, 100vw"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="glass-card p-4">
+              <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">
+                Signature
+              </p>
+              <p className="mt-2 text-base font-semibold text-[color:var(--foreground)]">
+                Low-end storylines
+              </p>
+            </div>
+            <div className="glass-card p-4">
+              <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">
+                Studio
+              </p>
+              <p className="mt-2 text-base font-semibold text-[color:var(--foreground)]">
+                Feature-length dynamics
+              </p>
+            </div>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section id="media" className="mx-auto w-full max-w-6xl px-6 pb-20">
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-3">
+            <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">
+              Featured Media
+            </p>
+            <h2 className="font-display text-3xl text-[color:var(--foreground)] md:text-4xl">
+              Featured score reel
+            </h2>
+            <p className="max-w-2xl text-base leading-7 text-[color:var(--muted)]">
+              A cover score excerpt showcasing cinematic arrangements, bass, and
+              synth bass textures.
+            </p>
+          </div>
+          <div className="grid gap-8 lg:grid-cols-[1.3fr_0.7fr]">
+            <div className="glass-card p-5 md:p-6">
+              <div className="aspect-video overflow-hidden rounded-2xl border border-[color:var(--border)]">
+                <iframe
+                  className="h-full w-full"
+                  src="https://www.youtube.com/embed/jxLQ78fidF4?modestbranding=1&rel=0"
+                  title="Rauz featured score"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
+              <div className="mt-4 flex flex-col gap-2 text-sm text-[color:var(--muted)] sm:flex-row sm:items-center sm:justify-between">
+                <span>Cover score excerpt</span>
+                <a
+                  className="text-sm font-semibold text-[color:var(--accent)]"
+                  href="https://www.youtube.com/watch?v=jxLQ78fidF4"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Watch on YouTube
+                </a>
+              </div>
+            </div>
+            <div className="flex flex-col gap-6">
+              <div className="glass-card p-5">
+                <h3 className="font-display text-2xl text-[color:var(--foreground)]">
+                  Audio spotlight
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">
+                  Listen to the tonal palette and bass narrative from the same
+                  reel.
+                </p>
+                <div className="mt-4 overflow-hidden rounded-2xl border border-[color:var(--border)]">
+                  <iframe
+                    className="h-[140px] w-full"
+                    src="https://www.youtube.com/embed/jxLQ78fidF4?modestbranding=1&rel=0"
+                    title="Rauz audio spotlight"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
+              <div className="glass-card p-5">
+                <h3 className="font-display text-2xl text-[color:var(--foreground)]">
+                  Social index
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">
+                  Follow new sessions and behind-the-scenes clips.
+                </p>
+                <div className="mt-4 flex flex-col gap-3">
+                  <a
+                    className="link-row"
+                    href="https://www.instagram.com/rauz.mazz/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <span>Instagram</span>
+                    <span className="text-[color:var(--muted)]">@rauz.mazz</span>
+                  </a>
+                  <a
+                    className="link-row"
+                    href="https://www.tiktok.com/@rauzmusique"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <span>TikTok</span>
+                    <span className="text-[color:var(--muted)]">@rauzmusique</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl px-6 pb-24">
+        <div className="glass-card flex flex-col gap-6 p-6 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-col gap-3">
+            <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">
+              Collaborations
+            </p>
+            <h2 className="font-display text-3xl text-[color:var(--foreground)]">
+              Ready for the next feature
+            </h2>
+            <p className="text-sm leading-6 text-[color:var(--muted)]">
+              Book cover scoring, bass sessions, or synth bass design for your
+              next release.
+            </p>
+          </div>
+          <Link className="btn" href="/contact">
+            Contact Rauz
+          </Link>
+        </div>
+      </section>
+    </main>
   );
 }
