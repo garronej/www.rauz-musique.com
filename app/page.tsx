@@ -1,52 +1,53 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getDictionary, getLocale } from "./lib/i18n";
 
-export default function Home() {
+export default async function Home() {
+  const locale = await getLocale();
+  const { home } = getDictionary(locale);
+
   return (
     <main>
       <section className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 pb-16 pt-8 lg:flex-row lg:items-center lg:gap-16">
         <div className="flex flex-1 flex-col gap-6">
           <div className="reveal">
-            <span className="chip">
-              Composer, bassist, synth bass, guitarist
-            </span>
+            <span className="chip">{home.chip}</span>
           </div>
           <h1 className="reveal reveal-delay-1 font-display text-5xl leading-tight text-[color:var(--foreground)] md:text-6xl lg:text-7xl">
-            Rauz
+            {home.heroTitle}
           </h1>
           <p className="reveal reveal-delay-2 text-lg leading-8 text-[color:var(--muted)] md:text-xl">
-            Composer of cover music for feature films, weaving cinematic
-            arrangements with deep bass textures and modern synth bass.
+            {home.heroDescription}
           </p>
           <div className="reveal reveal-delay-3 flex flex-wrap items-center gap-4">
             <a className="btn" href="#media">
-              Play featured score
+              {home.ctaPrimary}
             </a>
             <Link className="btn-outline" href="/contact">
-              Contact
+              {home.ctaSecondary}
             </Link>
           </div>
           <div className="reveal reveal-delay-3 grid gap-4 pt-4 sm:grid-cols-2">
             <div className="glass-card p-5">
               <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">
-                Focus
+                {home.focusLabel}
               </p>
               <p className="mt-3 text-lg font-semibold text-[color:var(--foreground)]">
-                Cinematic cover scoring
+                {home.focusTitle}
               </p>
               <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">
-                Reimagined themes for feature-length storytelling.
+                {home.focusDescription}
               </p>
             </div>
             <div className="glass-card p-5">
               <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">
-                Instruments
+                {home.instrumentsLabel}
               </p>
               <p className="mt-3 text-lg font-semibold text-[color:var(--foreground)]">
-                Bass-forward palettes
+                {home.instrumentsTitle}
               </p>
               <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">
-                Electric bass, synth bass, and guitar textures.
+                {home.instrumentsDescription}
               </p>
             </div>
           </div>
@@ -55,7 +56,7 @@ export default function Home() {
           <div className="hero-frame reveal reveal-delay-1">
             <Image
               src="/rauz.png"
-              alt="Rauz portrait"
+              alt={home.imageAlt}
               width={520}
               height={640}
               className="h-full w-full object-cover"
@@ -66,18 +67,18 @@ export default function Home() {
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="glass-card p-4">
               <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">
-                Signature
+                {home.signatureLabel}
               </p>
               <p className="mt-2 text-base font-semibold text-[color:var(--foreground)]">
-                Low-end storylines
+                {home.signatureTitle}
               </p>
             </div>
             <div className="glass-card p-4">
               <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">
-                Studio
+                {home.studioLabel}
               </p>
               <p className="mt-2 text-base font-semibold text-[color:var(--foreground)]">
-                Feature-length dynamics
+                {home.studioTitle}
               </p>
             </div>
           </div>
@@ -88,14 +89,13 @@ export default function Home() {
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-3">
             <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">
-              Featured Media
+              {home.mediaLabel}
             </p>
             <h2 className="font-display text-3xl text-[color:var(--foreground)] md:text-4xl">
-              Featured score reel
+              {home.mediaTitle}
             </h2>
             <p className="max-w-2xl text-base leading-7 text-[color:var(--muted)]">
-              A cover score excerpt showcasing cinematic arrangements, bass, and
-              synth bass textures.
+              {home.mediaDescription}
             </p>
           </div>
           <div className="grid gap-8 lg:grid-cols-[1.3fr_0.7fr]">
@@ -104,38 +104,37 @@ export default function Home() {
                 <iframe
                   className="h-full w-full"
                   src="https://www.youtube.com/embed/jxLQ78fidF4?modestbranding=1&rel=0"
-                  title="Rauz featured score"
+                  title={home.mediaVideoTitle}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen
                 />
               </div>
               <div className="mt-4 flex flex-col gap-2 text-sm text-[color:var(--muted)] sm:flex-row sm:items-center sm:justify-between">
-                <span>Cover score excerpt</span>
+                <span>{home.mediaCaption}</span>
                 <a
                   className="text-sm font-semibold text-[color:var(--accent)]"
                   href="https://www.youtube.com/watch?v=jxLQ78fidF4"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Watch on YouTube
+                  {home.watchOnYoutube}
                 </a>
               </div>
             </div>
             <div className="flex flex-col gap-6">
               <div className="glass-card p-5">
                 <h3 className="font-display text-2xl text-[color:var(--foreground)]">
-                  Audio spotlight
+                  {home.audioTitle}
                 </h3>
                 <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">
-                  Listen to the tonal palette and bass narrative from the same
-                  reel.
+                  {home.audioDescription}
                 </p>
                 <div className="mt-4 overflow-hidden rounded-2xl border border-[color:var(--border)]">
                   <iframe
                     className="h-[140px] w-full"
                     src="https://www.youtube.com/embed/jxLQ78fidF4?modestbranding=1&rel=0"
-                    title="Rauz audio spotlight"
+                    title={home.audioVideoTitle}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     referrerPolicy="strict-origin-when-cross-origin"
                     allowFullScreen
@@ -144,10 +143,10 @@ export default function Home() {
               </div>
               <div className="glass-card p-5">
                 <h3 className="font-display text-2xl text-[color:var(--foreground)]">
-                  Social index
+                  {home.socialTitle}
                 </h3>
                 <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">
-                  Follow new sessions and behind-the-scenes clips.
+                  {home.socialDescription}
                 </p>
                 <div className="mt-4 flex flex-col gap-3">
                   <a
@@ -157,7 +156,9 @@ export default function Home() {
                     rel="noreferrer"
                   >
                     <span>Instagram</span>
-                    <span className="text-[color:var(--muted)]">@rauz.mazz</span>
+                    <span className="text-[color:var(--muted)]">
+                      {home.instagramHandle}
+                    </span>
                   </a>
                   <a
                     className="link-row"
@@ -166,7 +167,9 @@ export default function Home() {
                     rel="noreferrer"
                   >
                     <span>TikTok</span>
-                    <span className="text-[color:var(--muted)]">@rauzmusique</span>
+                    <span className="text-[color:var(--muted)]">
+                      {home.tiktokHandle}
+                    </span>
                   </a>
                 </div>
               </div>
@@ -179,18 +182,17 @@ export default function Home() {
         <div className="glass-card flex flex-col gap-6 p-6 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-col gap-3">
             <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">
-              Collaborations
+              {home.collaborationsLabel}
             </p>
             <h2 className="font-display text-3xl text-[color:var(--foreground)]">
-              Ready for the next feature
+              {home.collaborationsTitle}
             </h2>
             <p className="text-sm leading-6 text-[color:var(--muted)]">
-              Book cover scoring, bass sessions, or synth bass design for your
-              next release.
+              {home.collaborationsDescription}
             </p>
           </div>
           <Link className="btn" href="/contact">
-            Contact Rauz
+            {home.collaborationsCta}
           </Link>
         </div>
       </section>

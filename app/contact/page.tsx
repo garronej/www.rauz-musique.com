@@ -1,28 +1,35 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { getDictionary, getLocale } from "../lib/i18n";
 
-export const metadata: Metadata = {
-  title: "Contact | Rauz",
-  description: "Get in touch with Rauz about film cover scoring and sessions.",
-};
+export async function generateMetadata() {
+  const locale = await getLocale();
+  const { contact } = getDictionary(locale);
 
-export default function ContactPage() {
+  return {
+    title: contact.metadataTitle,
+    description: contact.metadataDescription,
+  };
+}
+
+export default async function ContactPage() {
+  const locale = await getLocale();
+  const { contact } = getDictionary(locale);
+
   return (
     <main>
       <section className="mx-auto w-full max-w-6xl px-6 pb-8 pt-8">
         <div className="flex flex-col gap-4">
           <Link className="nav-link text-sm font-semibold" href="/">
-            Back to home
+            {contact.backLink}
           </Link>
           <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">
-            Contact
+            {contact.label}
           </p>
           <h1 className="font-display text-4xl text-[color:var(--foreground)] md:text-5xl">
-            Let's build the next cinematic cover
+            {contact.title}
           </h1>
           <p className="max-w-2xl text-lg leading-7 text-[color:var(--muted)]">
-            Share your project goals, timeline, and sonic references. This draft
-            form is ready to connect to your preferred contact service.
+            {contact.description}
           </p>
         </div>
       </section>
@@ -31,49 +38,51 @@ export default function ContactPage() {
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <form className="glass-card flex flex-col gap-6 p-6 md:p-8" method="post">
             <div className="flex flex-col gap-2 text-sm font-semibold text-[color:var(--foreground)]">
-              Name
+              {contact.form.nameLabel}
               <input
                 className="form-field"
                 type="text"
                 name="name"
-                placeholder="Your name"
+                placeholder={contact.form.namePlaceholder}
                 autoComplete="name"
               />
             </div>
             <div className="flex flex-col gap-2 text-sm font-semibold text-[color:var(--foreground)]">
-              Email
+              {contact.form.emailLabel}
               <input
                 className="form-field"
                 type="email"
                 name="email"
-                placeholder="you@email.com"
+                placeholder={contact.form.emailPlaceholder}
                 autoComplete="email"
               />
             </div>
             <div className="flex flex-col gap-2 text-sm font-semibold text-[color:var(--foreground)]">
-              Project focus
+              {contact.form.projectLabel}
               <select className="form-field" name="project">
-                <option value="cover-score">Cover score arrangement</option>
-                <option value="bass-session">Bass session</option>
-                <option value="synth-bass">Synth bass design</option>
-                <option value="collaboration">Collaboration</option>
-                <option value="other">Other</option>
+                <option value="cover-score">{contact.form.projectOptions.cover}</option>
+                <option value="bass-session">{contact.form.projectOptions.bass}</option>
+                <option value="synth-bass">{contact.form.projectOptions.synth}</option>
+                <option value="collaboration">
+                  {contact.form.projectOptions.collaboration}
+                </option>
+                <option value="other">{contact.form.projectOptions.other}</option>
               </select>
             </div>
             <div className="flex flex-col gap-2 text-sm font-semibold text-[color:var(--foreground)]">
-              Message
+              {contact.form.messageLabel}
               <textarea
                 className="form-field min-h-[160px]"
                 name="message"
-                placeholder="Tell me about the film, scene, or release."
+                placeholder={contact.form.messagePlaceholder}
               />
             </div>
             <div className="flex flex-wrap items-center justify-between gap-4">
               <p className="text-xs text-[color:var(--muted)]">
-                Connect this form to Formspree, Netlify, or your own endpoint.
+                {contact.form.helper}
               </p>
               <button className="btn" type="submit">
-                Send message
+                {contact.form.submit}
               </button>
             </div>
           </form>
@@ -81,20 +90,19 @@ export default function ContactPage() {
           <div className="flex flex-col gap-6">
             <div className="glass-card flex flex-col gap-3 p-6">
               <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">
-                What helps
+                {contact.helpLabel}
               </p>
               <h2 className="font-display text-2xl text-[color:var(--foreground)]">
-                Share references
+                {contact.helpTitle}
               </h2>
               <p className="text-sm leading-6 text-[color:var(--muted)]">
-                Include a link to the original theme, the desired tone, and the
-                delivery deadline.
+                {contact.helpDescription}
               </p>
             </div>
 
             <div className="glass-card flex flex-col gap-4 p-6">
               <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">
-                Socials
+                {contact.socialsLabel}
               </p>
               <div className="flex flex-col gap-3">
                 <a

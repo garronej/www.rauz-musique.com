@@ -1,6 +1,17 @@
 import Link from "next/link";
 
-export default function SiteFooter() {
+type SiteFooterProps = {
+  labels: {
+    tagline: string;
+    nav: {
+      contact: string;
+      instagram: string;
+      tiktok: string;
+    };
+  };
+};
+
+export default function SiteFooter({ labels }: SiteFooterProps) {
   return (
     <footer className="w-full">
       <div className="mx-auto w-full max-w-6xl px-6 pb-10 pt-6">
@@ -10,12 +21,12 @@ export default function SiteFooter() {
               Rauz
             </span>
             <span className="text-sm text-[color:var(--muted)]">
-              Composer, bassist, synth bass, guitarist.
+              {labels.tagline}
             </span>
           </div>
           <div className="flex flex-wrap items-center gap-4 text-sm font-semibold">
             <Link className="nav-link" href="/contact">
-              Contact
+              {labels.nav.contact}
             </Link>
             <a
               className="nav-link"
@@ -23,7 +34,7 @@ export default function SiteFooter() {
               target="_blank"
               rel="noreferrer"
             >
-              Instagram
+              {labels.nav.instagram}
             </a>
             <a
               className="nav-link"
@@ -31,7 +42,7 @@ export default function SiteFooter() {
               target="_blank"
               rel="noreferrer"
             >
-              TikTok
+              {labels.nav.tiktok}
             </a>
           </div>
         </div>

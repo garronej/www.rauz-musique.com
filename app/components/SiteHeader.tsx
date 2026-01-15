@@ -1,7 +1,33 @@
 import Link from "next/link";
+import LanguageToggle from "./LanguageToggle";
 import ThemeToggle from "./ThemeToggle";
 
-export default function SiteHeader() {
+type Locale = "en" | "fr";
+
+type SiteHeaderProps = {
+  locale: Locale;
+  labels: {
+    composer: string;
+    nav: {
+      media: string;
+      contact: string;
+      instagram: string;
+      tiktok: string;
+    };
+    theme: {
+      label: string;
+      light: string;
+      dark: string;
+    };
+    language: {
+      label: string;
+      english: string;
+      french: string;
+    };
+  };
+};
+
+export default function SiteHeader({ locale, labels }: SiteHeaderProps) {
   return (
     <header className="w-full">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 pt-8 sm:flex-row sm:items-center sm:justify-between">
@@ -10,15 +36,15 @@ export default function SiteHeader() {
             Rauz
           </span>
           <span className="hidden text-[11px] uppercase tracking-[0.35em] text-[color:var(--muted)] sm:inline">
-            Composer
+            {labels.composer}
           </span>
         </Link>
         <nav className="flex flex-wrap items-center gap-4 text-sm font-semibold">
           <Link className="nav-link" href="/#media">
-            Media
+            {labels.nav.media}
           </Link>
           <Link className="nav-link" href="/contact">
-            Contact
+            {labels.nav.contact}
           </Link>
           <a
             className="nav-link"
@@ -26,7 +52,7 @@ export default function SiteHeader() {
             target="_blank"
             rel="noreferrer"
           >
-            Instagram
+            {labels.nav.instagram}
           </a>
           <a
             className="nav-link"
@@ -34,9 +60,19 @@ export default function SiteHeader() {
             target="_blank"
             rel="noreferrer"
           >
-            TikTok
+            {labels.nav.tiktok}
           </a>
-          <ThemeToggle />
+          <LanguageToggle
+            locale={locale}
+            label={labels.language.label}
+            englishLabel={labels.language.english}
+            frenchLabel={labels.language.french}
+          />
+          <ThemeToggle
+            label={labels.theme.label}
+            lightLabel={labels.theme.light}
+            darkLabel={labels.theme.dark}
+          />
         </nav>
       </div>
     </header>

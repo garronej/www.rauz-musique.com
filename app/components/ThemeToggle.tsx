@@ -4,12 +4,22 @@ import { useEffect, useState } from "react";
 
 type Theme = "light" | "dark";
 
+type ThemeToggleProps = {
+  label: string;
+  lightLabel: string;
+  darkLabel: string;
+};
+
 const THEME_KEY = "rauz-theme";
 
 const getPreferredTheme = (): Theme =>
   window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 
-export default function ThemeToggle() {
+export default function ThemeToggle({
+  label,
+  lightLabel,
+  darkLabel,
+}: ThemeToggleProps) {
   const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
@@ -39,7 +49,7 @@ export default function ThemeToggle() {
       onClick={handleToggle}
       aria-pressed={theme === "dark"}
     >
-      <span className="sr-only">Toggle theme</span>
+      <span className="sr-only">{label}</span>
       {theme === "dark" ? (
         <svg
           aria-hidden="true"
@@ -72,7 +82,7 @@ export default function ThemeToggle() {
         </svg>
       )}
       <span className="hidden text-[10px] font-semibold uppercase tracking-[0.3em] sm:inline">
-        {theme === "dark" ? "Dark" : "Light"}
+        {theme === "dark" ? darkLabel : lightLabel}
       </span>
     </button>
   );
